@@ -1,4 +1,4 @@
-# Reko's dotfiles
+# Reko's Dotfiles
 
 ## Contents
 
