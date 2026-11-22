@@ -1,4 +1,4 @@
-# Hyprland dotfiles
+# Reko's dotfiles
 
 ## Contents
 
