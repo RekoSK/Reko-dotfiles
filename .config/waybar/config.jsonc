@@ -1,0 +1,204 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    /*"spacing": 0,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,*/
+
+    // Layout
+    "modules-left": ["group/power", "tray", "group/usb"],
+    "modules-center": ["hyprland/workspaces", "clock", "group/performance"],
+    "modules-right": ["pulseaudio", "custom/clipboard","idle_inhibitor", "network", "bluetooth", "battery", "custom/notification"],
+
+    
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A, %B %d, %Y (%R)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click-right": "gnome-calendar",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6600'><b><u>{}</u></b></span>"
+            }
+        },
+        
+        "actions":  {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+
+    "pulseaudio": {
+        "format": "",
+        "format-muted": "",
+        "scroll-step": 0,
+        "on-click": "volumectl u"
+    },
+
+    // --- LEFT: Power Drawer ---
+    "group/power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "custom/arch",
+            "custom/reboot",
+            "custom/suspend",
+            "custom/shutdown"
+        ]
+    },
+    "custom/arch": {
+        "format": "󰣇",
+        "tooltip": false
+    },
+    "custom/reboot": {
+        "format": "󰜉",
+        "tooltip": false,
+        "on-click": "sh /home/reko/.config/hypr/restart_hyprland.sh"
+    },
+    "custom/suspend": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "systemctl suspend"
+    },
+    "custom/shutdown": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "sh ~/.config/hypr/exit_hyprland.sh"
+    },
+
+    "group/usb":{
+        "orientation": "horizontal",
+        "modules":[
+            "custom/usb1",
+            "custom/usb2",
+            "custom/usb3",
+            "custom/usb_fallback"
+        ]
+    },
+    "custom/usb1":{
+        "format": "{}",
+        "exec":"/home/reko/.config/hypr/USB/checking_connected.sh 1",
+        "return-type": "json",
+        "interval": 3,
+        "on-click": "sh /home/reko/.config/hypr/USB/automatic_unmount.sh 1",
+        "on-click-right": "sh /home/reko/.config/hypr/USB/automatic_mount.sh 1"
+    },
+    "custom/usb2":{
+        "format": "{}",
+        "exec":"/home/reko/.config/hypr/USB/checking_connected.sh 2",
+        "return-type": "json",
+        "interval": 3,
+        "on-click": "sh /home/reko/.config/hypr/USB/automatic_unmount.sh 2",
+        "on-click-right": "sh /home/reko/.config/hypr/USB/automatic_mount.sh 2"
+    },
+    "custom/usb3":{
+        "format": "{}",
+        "exec":"/home/reko/.config/hypr/USB/checking_connected.sh 3",
+        "return-type": "json",
+        "interval": 3,
+        "on-click": "sh /home/reko/.config/hypr/USB/automatic_unmount.sh 3",
+        "on-click-right": "sh /home/reko/.config/hypr/USB/automatic_mount.sh 3"
+    },
+    "custom/usb_fallback":{
+        "format": "{}",
+        "exec":"/home/reko/.config/hypr/USB/checking_connected.sh 4",
+        "return-type": "json",
+        "interval": 3,
+        "on-click": "sh /home/reko/.config/hypr/USB/usb_rofi.sh"
+    },
+
+    // --- CENTER: Workspaces & Stats ---
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "group/performance": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "disk"
+        ]
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false,
+        "on-click": "missioncenter"
+    },
+    "memory": {
+        "format": " {}%",
+        "on-click": "missioncenter"
+    },
+    "disk": {
+        "format": " {percentage_used}%",
+        "path": "/",
+        "on-click": "missioncenter"
+    },
+
+    // --- RIGHT: System & Tray ---
+    "tray": {
+        "icon-size": 20
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰅶",   // Hot coffee cup
+            "deactivated": "󰾫" // Cold/empty coffee cup
+        },
+        "tooltip-format-activated": "Caffeine: Active",
+        "tooltip-format-deactivated": "Caffeine: Inactive"
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀  Wired",
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ipaddr}/{cidr}",
+        "on-click": "sh /home/reko/.config/hypr/network_menu.sh"
+    },
+    "bluetooth": {
+        "format": "  {status}",
+        "format-connected": "  {device_alias}",
+        "format-connected-battery": "  {device_alias} {device_battery_percentage}%",
+        "on-click": "sh /home/reko/.config/hypr/bluetooth_menu.sh"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "",
+        // This command assumes you use SwayNC. Change to your notification daemon if different!
+        "on-click": "swaync-client -t -sw" 
+    },
+
+    "custom/clipboard":{
+        "format": "󰅍",
+        "tooltip": false,
+        "on-click": "cliphist list | rofi -dmenu -p \"󰅍 Clipboard\" -theme ~/.config/rofi/amber.rasi | cliphist decode | wl-copy"
+    }
+}

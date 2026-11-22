@@ -1,0 +1,33 @@
+# Main Format - Transitioning through your 3 oranges
+format = """
+[](#ff6600)\
+[ ](bg:#ff6600 fg:#000000)\
+[](fg:#ff6600 bg:#ff8e43)\
+$directory\
+[](fg:#ff8e43 bg:#ffa970)\
+$git_branch\
+$git_status\
+[](fg:#ffa970 bg:none)\
+$character
+"""
+
+[directory]
+# Matches the 'bg' of the first arrow and 'fg' of the second
+style = "bg:#ff8e43 fg:#000000" 
+format = "[ $path ]($style)"
+truncation_length = 3
+
+[git_branch]
+# Matches the 'bg' of the second arrow and 'fg' of the third
+style = "bg:#ffa970 fg:#000000"
+format = "[[ $symbol $branch ]($style)]($style)"
+
+[git_status]
+style = "bg:#ffa970 fg:#000000"
+format = "[[($all_status$ahead_behind ) ]($style)]($style)"
+
+[character]
+success_symbol = "[ ➜](bold #ff6600)"
+# This adds a "!!" to the arrow only when there is an error
+error_symbol = "[ ✘ ➜](bold #ff0000)"
+

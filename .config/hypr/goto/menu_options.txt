@@ -1,0 +1,8 @@
+/home/reko
+/home/reko/Downloads
+/home/reko/Documents
+/home/reko/Pictures
+/home/reko/Videos
+/home/reko/Music
+/home/reko/.config
+/tmp

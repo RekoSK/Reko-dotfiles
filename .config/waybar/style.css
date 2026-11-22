@@ -1,0 +1,256 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+    /*min-height: 0;*/
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+/* Backgrounds for the "Pill" look */
+.modules-left > widget > box,
+.modules-center > widget > box,
+.modules-right > widget > box,
+#usb > widget > * {
+    background-color: rgba(32, 32, 32, 0.85); /* Dark slightly transparent background */
+    border-radius: 16px;
+    padding: 0px 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    /*margin-right: 20px;
+    margin-left: 20px;*/
+    color: #ff6600;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modules-right > widget > *,
+.modules-left > widget > * {
+    margin-left: 5px;   /* Space between modules */
+    margin-right: 5px;  /* Space between modules */
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.modules-center > widget > * {
+    margin-left: 10px;   /* Space between modules */
+    margin-right: 10px;  /* Space between modules */
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/* --- Power Menu Drawer --- */
+#custom-arch {
+    color: #ff6600;
+    font-size: 14px;
+    padding-right: 4px;
+}
+#custom-shutdown, #custom-reboot, #custom-suspend {
+    color: #ff4000;
+    padding: 0 10px;
+    font-size: 16px;
+}
+#custom-reboot { 
+    color: #26ff00;
+    margin-left: 10px;
+}
+#custom-suspend { color: #ffe23a; }
+
+/* --- Workspaces --- */
+#workspaces button {
+    color: #6c7086;
+    padding: 0 6px;
+    background: transparent;
+}
+#workspaces button.active {
+    color: #ff6600;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: transparent;
+    color: #c64c00;
+}
+
+/* --- Center Stats --- */
+#performance{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+#performance * {
+    margin: 0px 10px;
+}
+#cpu { color: #ff6600; }
+#memory { color: #ffe23a; }
+#disk { color: #f9e2af; }
+
+/* --- Right Modules --- */
+@keyframes blink{
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+#tray *{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#tray > widget > image,
+#tray > image {
+    animation: blink 2s ease-in-out 3;
+}
+#tray {
+    
+    padding: 0px 10px;
+    margin-bottom: 3px;
+    color: #ff6600;
+    background-color: rgba(255, 102, 0, 0.1);
+    border: 1px solid #ff6600;
+}
+#tray:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+
+#pulseaudio.muted{
+    color: #ff6600; /* Your orange */
+    background: rgba(255, 102, 0, 0.1);
+    border: 1px solid #ff6600;
+    border-radius: 12px;
+    padding: 0px 8px;
+    padding-right: 10px;
+}
+
+
+#idle_inhibitor {
+    background-color: #ff6600; /* Dark slightly transparent background */
+    border-radius: 8px;
+    padding: 0px 8px;
+    padding-right: 12px;
+    
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#idle_inhibitor:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+/*#b60000 #00b6b9 #11d100*/
+#network {
+    background-color: #ff6600; /* Dark slightly transparent background */
+    border-radius: 8px;
+    padding: 0px 8px;
+    
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#network:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+#bluetooth {
+    background-color: #ff6600; /* Dark slightly transparent background */
+    border-radius: 8px;
+    padding: 0px 8px;
+        color: rgba(0, 0, 0, 0);
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#bluetooth:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+#battery {
+    background-color: #ff6600; /* Dark slightly transparent background */
+    border-radius: 8px;
+    padding: 0px 8px;
+    
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#battery:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+#battery.warning {
+    color: #000000;
+    animation: blink 3s infinite;
+}
+#battery.critical {
+    color: #000000;
+    animation: blink 1s infinite;
+}
+#custom-notification {
+    background-color: #ff6600; /* Dark slightly transparent background */
+    border-radius: 8px;
+    padding: 0px 8px;
+    padding-right: 12px;
+    
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#custom-notification:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+
+#clock {
+    background-color: #ff6600; /* Semi-transparent dark bg */
+    color: #1e1e2e;                         /* Your signature Orange */
+    padding: 0 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* Optional: change style when hovering */
+#clock:hover {
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+
+#custom-printer_queue {
+    color: #ff6600; /* Your orange */
+    background: rgba(255, 102, 0, 0.1);
+    border: 1px solid #ff6600;
+    border-radius: 12px;
+    padding: 0 10px;
+    margin: 4px 5px;
+    animation: blink 2s infinite; /* Make it pulse so you don't forget it */
+}
+
+#custom-clipboard{
+    background-color: #ff6600; /* Dark slightly transparent background */
+    border-radius: 8px;
+    padding: 0px 8px;
+    padding-right: 12px;
+    
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#usb{
+    background-color: rgba(0, 0, 0, 0); /* Dark slightly transparent background */
+    border-radius: 0;
+    padding: 0 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    /*margin-right: 20px;
+    margin-left: 20px;*/
+    border: none;
+}
+#usb > widget > *{
+    border: 1px solid #ff6600;
+    background-color: rgba(255, 102, 0, 0.1)
+}
+#usb > widget > *:hover{
+    background-color: #c64c00;
+    color: #1e1e2e;
+}
+
+.visible_usb{
+    animation: blink 2s ease-in-out 3;
+}

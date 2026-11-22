@@ -1,0 +1,56 @@
+# Reko dotfiles: bash setup for kitty
+# Loaded from ~/.bashrc by the line the installer adds there.
+
+[[ $- == *i* ]] || return
+
+# --- 1. BLE.SH (syntax highlighting + autosuggestions), attached at the end ---
+if [ -f /usr/share/blesh/ble.sh ] && [[ -z ${BLE_VERSION-} ]]; then
+    source /usr/share/blesh/ble.sh --noattach
+fi
+
+# --- 2. GENERAL SETTINGS ---
+HISTCONTROL=ignoreboth
+HISTSIZE=10000
+HISTFILESIZE=20000
+shopt -s checkwinsize
+export PATH="$HOME/.local/bin:$PATH"
+
+# --- 3. ALIASES ---
+if command -v eza &>/dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias ll='eza -lh --icons --grid --group-directories-first'
+    alias lt='eza --tree --level=2 --icons'
+fi
+
+# --- 4. FZF (Lava Orange theme), Ctrl+R searches the history ---
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#4f1500,bg:#1e1e2e,spinner:#c34e00,hl:#ff6600 \
+--color=fg:#ff6600,header:#c34e00,info:#c34e00,pointer:#ff6600 \
+--color=marker:#ff6600,fg+:#ff6600,prompt:#c34e00,hl+:#ff6600 \
+--color=border:#c34e00 --border \
+--prompt='➜ ' --pointer='▶' --marker='✓'"
+
+if [ -f /usr/share/fzf/key-bindings.bash ]; then
+    source /usr/share/fzf/key-bindings.bash
+    source /usr/share/fzf/completion.bash
+fi
+
+# --- 5. STARSHIP PROMPT (config lives next to this file) ---
+if command -v starship &>/dev/null; then
+    export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/bash/starship.toml"
+    eval "$(starship init bash)"
+fi
+
+# --- 6. ZOXIDE (z <part of a folder name> jumps there) ---
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+fi
+
+# --- 7. BLE-ATTACH & FZF BINDING ---
+if [[ ${BLE_VERSION-} ]]; then
+    # Direct bind to fzf function to ensure it works with ble.sh
+    ble-bind -m emacs -c 'C-r' '__fzf_history__'
+    ble-bind -m vi_insert -c 'C-r' '__fzf_history__' 2>/dev/null
+
+    ble-attach
+fi

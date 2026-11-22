@@ -1,0 +1,109 @@
+/*
+Generated with Gradience
+
+Issues caused by theming should be reported to Gradience repository, and not to upstream
+
+https://github.com/GradienceTeam/Gradience
+*/
+/*
+@define-color accent_bg_color #26ff00;
+@define-color accent_fg_color #04ff00;
+@define-color window_bg_color #00f7ff;
+@define-color window_fg_color #00ffe5;*/
+/*
+@define-color headerbar_bg_color rgb(54, 22, 0);
+@define-color headerbar_backdrop_color rgb(54, 22, 0);
+@define-color headerbar_border_color #ff6600;
+@define-color headerbar_fg_color #ff6600;*/
+
+/* URČITE Stred okna, minimálne nautilus, ovplivnuje scrolle */
+.view {
+    background-color: rgb(54, 22, 0);
+    color: #ffffff;
+}
+
+/*URČITE menu vľavo*/
+.navigation-sidebar {
+    background-color: rgb(29, 11, 0);
+    color: #ffffff;            /* White text for contrast */
+}
+
+headerbar {
+    background-color: rgb(15, 5, 0); /* Change this to your preferred brown/color */
+    color: #ffffff;            /* This changes the button/icon color to white */
+    border-bottom: 1px solid #5e2900; /* Optional: adds a subtle bottom line */
+    box-shadow: none;          /* Removes the default shadow if you want it flat */
+}
+
+/* This specifically targets the 'Title' area and buttons */
+headerbar windowhandle {
+    background-color: transparent;
+}
+
+window{
+    background-color: rgb(0,0,0)
+}
+
+headerbar button {
+    background-color: rgb(54, 22, 0); /* Dark brown background */
+    color: #ffffff;            /* White icons/text */
+    border-radius: 6px;        /* Rounded corners */
+}
+
+/* Change the color when you hover over them */
+headerbar button:hover {
+    background-color: rgb(29, 11, 0);
+}
+
+
+popover > contents {
+    background-color: rgb(54, 22, 0);
+    border: 1px solid #ff6600;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.15); /* Subtle orange glow instead of a dark shadow */
+    padding: 4px;
+}
+
+/* 2. The little triangle arrow pointing up to the button */
+popover > arrow {
+    background-color: rgb(54, 22, 0);
+    border: 1px solid #ff6600;
+}
+
+/* 3. The text/items inside the menu */
+popover modelbutton,
+popover button {
+    color: #ffffff;
+    background-color: rgb(54, 22, 0);
+    border: none;
+    border-radius: 4px;
+    padding: 6px 8px;
+}
+
+/* 4. Hover state when you mouse over a menu item */
+popover modelbutton:hover,
+popover button:hover {
+    background-color: #1a0a00; /* Very dark orange-tinted black */
+    color: #ff8533;            /* Slightly brighter orange text */
+}
+
+/* 5. The divider lines (separators) inside the menu */
+popover separator {
+    background-color: rgba(255, 102, 0, 0.3); /* Faint orange line */
+    min-height: 1px;
+    margin: 4px 0;
+}
+
+/* 6. Checkmarks / Radio icons for selected items (like in the sorting menu) */
+popover modelbutton radio,
+popover modelbutton check {
+    color: #ff6600;
+    background-image: none;
+}
+
+popover modelbutton check:checked,
+popover modelbutton radio:checked {
+    background-color: #c64c00; /* Orange background */
+    border: 1px solid #c64c00; /* Orange border */
+    background-image: none;
+    color: #ff6600;            /* Black checkmark/dot inside */
+}
